@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="term-title">
+    <a>{{ .Title }}</a>
+    <span>{{ len .Pages }}</span>
+  </div>
+  <hr/>
+  <div class="post-list">
+    {{ range .Pages}}
+        <div>
+            <span class="post-item-date">{{time.Format "01月02日" .Date}}</span>
+            <a class="post-item-link" href="{{ .RelPermalink }}">{{.LinkTitle }}</a>
+        </div>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,23 @@
+{{ define "main" }}
+<h2>关于我</h2>
+{{ .Content }}
+<h2>最近博文</h2>
+<ul>
+    {{ range first 3 .Site.RegularPages.ByDate.Reverse }}
+        <li>
+            <div>
+                <span class="post-title">{{ .LinkTitle }}</span>
+            </div>
+            <div class="tag-list">
+                <h4>{{ time.Format "2006年01月02日" .Params.date }}</h4>
+                {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+            </div>
+            <div class="summary">
+                <p>{{ .Params.summary }}...</p>
+                <a href="{{ .RelPermalink }}">查看更多</a>
+            </div>
+            <hr/>
+        </li>
+    {{ end }}
+</ul>
+{{ end }}

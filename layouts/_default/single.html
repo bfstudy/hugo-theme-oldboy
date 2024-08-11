@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <h1 class="article-title">{{ .Title }}</h1>
+  <h4 class="article-date">{{ .Date | time.Format "2006-01-02" }}</h4>
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+  <div class="tag-list">
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  </div>
+{{ end }}

@@ -1,0 +1,23 @@
+{{ define "main" }}
+    {{ with .Site.Taxonomies }}
+        {{ $numberOfTerms := 0 }}
+        {{ range $taxonomy, $terms := . }}
+            {{ $numberOfTerms = len . | add $numberOfTerms }}
+        {{ end }}
+
+        {{ if gt $numberOfTerms 0 }}
+            {{ range $taxonomy, $terms := . }}
+                {{ with $terms }}
+                    <div class="tags">
+                        {{ range $term, $weightedPages := . }}
+                        <div class="tags-item">
+                            <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+                            <span>{{ len $weightedPages }}</span>
+                        </div>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
