@@ -1,0 +1,42 @@
+{{ define "main" }}
+  {{ $groups :=.Pages.ByDate.GroupByDate "2006" }}
+  <div class="year-btn-list">
+    {{ range $groups }}
+        <button class="year-btn" id="btn-{{.Key}}" onclick="showYear(`{{ .Key }}`)">{{ .Key }}</button>
+    {{ end }}
+  </div>
+  <hr>
+  {{ range $groups }}
+    <div id="{{ .Key }}" style="display: none; margin-top: 10px;">
+      <div class="post-list">
+        {{ range .Pages}}
+            <div>
+                <span class="post-item-date">{{time.Format "01月02日" .Date}}</span>
+                <a class="post-item-link" href="{{ .RelPermalink }}">{{.LinkTitle }}</a>
+            </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  <script>
+    function showYear(year) {
+      {{ range $groups }}
+        var div = document.getElementById('{{ .Key }}');
+        var btn = document.getElementById(`btn-{{.Key}}`)
+        if ('{{ .Key }}' === year) {
+          div.style.display = 'block';
+          btn.classList.add("year-btn-active")
+        } else {
+          div.style.display = 'none';
+          btn.classList.remove("year-btn-active")
+        }
+      {{ end }}
+    }
+    let key = {{ (index $groups 0).Key }}
+    let firstDiv = document.getElementById(key);
+    let btn = document.getElementById("btn-" + key)
+    firstDiv.style.display = 'block';
+    btn.classList.add("year-btn-active")
+  </script>
+{{ end }}

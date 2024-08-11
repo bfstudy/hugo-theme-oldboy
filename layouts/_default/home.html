@@ -3,7 +3,8 @@
 {{ .Content }}
 <h2>最近博文</h2>
 <ul>
-    {{ range first 2 .Site.RegularPages.ByDate.Reverse }}
+    {{ $pages := where site.RegularPages "Type" "posts" }}
+    {{ range first 2 $pages.ByDate.Reverse }}
         <li>
             <div>
                 <span class="post-title">{{ .LinkTitle }}</span>

@@ -152,9 +152,11 @@ footer {
 
 .article-content p {
   font-size: 1.3rem;
-  text-indent: 2.6rem;
   line-height: 2.1rem;
-  letter-spacing: 0.1rem;
+}
+
+.chinese {
+  text-indent: 2.6rem;
 }
 
 /* Tag List Page */
