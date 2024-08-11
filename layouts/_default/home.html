@@ -3,7 +3,7 @@
 {{ .Content }}
 <h2>最近博文</h2>
 <ul>
-    {{ range first 3 .Site.RegularPages.ByDate.Reverse }}
+    {{ range first 2 .Site.RegularPages.ByDate.Reverse }}
         <li>
             <div>
                 <span class="post-title">{{ .LinkTitle }}</span>
